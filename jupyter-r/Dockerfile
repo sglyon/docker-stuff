@@ -18,7 +18,6 @@ RUN add-apt-repository "deb http://cran.rstudio.com/bin/linux/ubuntu trusty/" &&
     ln -s /usr/share/doc/littler/examples/install.r /usr/local/bin/install.r && \
     echo 'source("/etc/R/Rprofile.site")' >> /etc/littler.r && \
     install.r docopt && \
-    pip2 install rpy2 && pip3 install rpy2 && \
     rm -rf /tmp/downloaded_packages/ /tmp/*.rds /var/tmp/* && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
