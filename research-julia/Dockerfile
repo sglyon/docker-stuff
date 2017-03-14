@@ -14,7 +14,7 @@ RUN echo "cacert=/etc/ssl/certs/ca-certificates.crt" > ~/.curlrc
 
 # Julia package installation
 RUN julia -e 'Pkg.init();' && \
-    julia -e 'map(Pkg.add, ["Plots", "PlotlyJS", "IterationManagers", "QuantEcon"])' && \
+    julia -e 'map(Pkg.add, ["Plots", "PlotlyJS", "IterationManagers", "QuantEcon", "Combinatorics"])' && \
     julia -e 'map(Pkg.add, ["Distributions", "NLsolve", "Interact","Interpolations"])' && \
     julia -e 'Pkg.clone("https://github.com/sglyon/ModelerToolbox.jl.git")' && \
     julia -e 'Pkg.clone("https://github.com/sglyon/MINPACK.jl.git")'
