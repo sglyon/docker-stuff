@@ -1,4 +1,4 @@
-FROM julia:0.4.5
+FROM julia:0.5.1
 
 MAINTAINER Spencer Lyon <spencerlyon2@gmail.com>
 
@@ -16,15 +16,15 @@ RUN echo "cacert=/etc/ssl/certs/ca-certificates.crt" > ~/.curlrc
 RUN julia -e 'Pkg.init();' && \
     julia -e 'map(Pkg.add, ["Plots", "PlotlyJS", "IterationManagers", "QuantEcon"])' && \
     julia -e 'map(Pkg.add, ["Distributions", "NLsolve", "Interact","Interpolations"])' && \
-    julia -e 'Pkg.clone("https://github.com/spencerlyon2/ModelerToolbox.jl.git")' && \
-    julia -e 'Pkg.clone("https://github.com/spencerlyon2/CompEcon.jl.git")'
+    julia -e 'Pkg.clone("https://github.com/sglyon/ModelerToolbox.jl.git")' && \
+    julia -e 'Pkg.clone("https://github.com/sglyon/MINPACK.jl.git")'
 
 # these packages are harder to install... put them later just in case
 RUN julia -e 'Pkg.add("JLD"); Pkg.add("HDF5")'
 RUN julia -e 'Pkg.add("IJulia")'
 
 # check out some of my packages...
-RUN julia -e 'Pkg.checkout("PlotlyJS"); Pkg.checkout("IterationManagers");'
+RUN julia -e 'Pkg.checkout("BasisMatrices"); Pkg.checkout("BasisMatrices", "develop");'
 
 # call using on some to precompile things
-RUN julia -e 'using PlotlyJS, QuantEcon, Interpolations, CompEcon, JLD'
+RUN julia -e 'using BasisMatrices, NLsolve'
