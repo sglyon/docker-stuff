@@ -21,7 +21,7 @@ RUN julia -e 'Pkg.init();' && \
 
 # these packages are harder to install... put them later just in case
 RUN julia -e 'Pkg.add("JLD"); Pkg.add("HDF5")'
-RUN julia -e 'Pkg.add("IJulia")'
+RUN julia -e 'Pkg.add("IJulia"); Pkg.add("PyPlot")'
 
 # check out some of my packages...
 RUN julia -e 'Pkg.checkout("BasisMatrices"); Pkg.checkout("BasisMatrices", "develop");'
